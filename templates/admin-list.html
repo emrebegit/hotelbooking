@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="hero-wrap" style="background-image: url({{url_for('static',filename='images/bg_1.jpg')}});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+          <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+          	<div class="text">
+	            <h1 class="mb-4 bread">Admin Page</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Room No</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Capacity</th>
+                                <th scope="col">Adultbed</th>
+                                <th scope="col">Roomtype</th>
+                                <th scope="col">Indate</th>
+                                <th scope="col">Outdate</th>
+                                <th scope="col">Is reserve?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                {% for room in rooms %}
+                            <tr>
+                                <th scope="row">{{room.roomno}}</th>
+                                <td>{{room.price}}</td>
+                                <td>{{room.capacity}}</td>
+                                <td>{{room.adultbed}}</td>
+                                <td>{{room.roomtype}}</td>
+                                <td>{{room.inDate}}</td>
+                                <td>{{room.outDate}}</td>
+                                <td>{{room.isreserve}}</td>
+                                <td><a class="btn-custom" href="{{url_for('getupdateroom',roomno = room.roomno)}}"><i class="fa fa-2x fa-edit"></i></a></td>
+                                <td><a class="btn-custom" href="{{url_for('deleteroom',roomno=room.roomno)}}"><i class="fa fa-2x fa-ban text-danger"></i></a></td>
+                            </tr>                
+                {% endfor %}
+                </tbody>
+                </table>
+                <div class="row text-center">
+                    <div class="col-12 justify-content-center">
+                        <a href="admin" class="btn btn-primary mt-3 mb-5 p-3">Add New Room</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hero-wrap" style="background-image: url('{{url_for('static',filename='images/bg_1.jpg')}}');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+          <h1 class="mb-4 bread">Rooms</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% for i in list %}
+<div class="text p-3 text-center">
+  <table class="table">
+    <tr>
+      <td> Basket No</td>
+      <td> User Name</td>
+      <td> Room No</td>
+      <td> Price</td>
+      <td>Bonus</td>
+    </tr>
+    <tr>
+      <td>{{i.basketno}}</td>
+      <td>{{current_user.username}}</td>
+      <td>{{i.roomno}}</td>
+      <td>{{i.price}}</td>
+      <td>{{current_user.bonus}}</td>
+      <td>
+        <p class="pt-1"><a class="btn-custom"
+            href="{{url_for('usebonus',basketno=i.basketno,price=i.price)}}">Use Bonus<span
+              class="icon-long-arrow-right"></span></a></p>
+      </td>
+
+      <td><p class="pt-1"><a class="btn-custom"
+        href="{{url_for('delbasket',basketno=i.basketno)}}">Cancel Basket<span
+          class="icon-long-arrow-right"></span></a></p></td>
+      
+
+    </tr>
+
+  </table>
+  <table class="table">
+    <tr>
+      <td>
+        <p class="pt-1"><a class="btn-custom"
+            href="{{url_for('insres',roomno=i.roomno,basketno=i.basketno)}}">Go Reservation<span
+              class="icon-long-arrow-right"></span></a></p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hero-wrap" style="background-image: url('{{url_for('static',filename='images/bg_1.jpg')}}');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+          <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+          	<div class="text">
+	            <h1 class="mb-4 bread">Rooms</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% for i in result %}
+    <div class="text p-3 text-center">
+    <table class="table">
+      <tr>
+        <td> İnvoiceno</td>
+        <td> User Name</td>
+        <td> Room No</td>
+        <td> Price</td>
+        <td> Reservation Time</td>
+      </tr>
+      <tr>
+        <td>{{i.invoiceno}}</td>
+        <td>{{current_user.username}}</td>
+        <td>{{i.roomno}}</td>
+        <td>{{i.totalamount}}</td>
+        <td>{{i.time}}</td>
+        <td><p class="pt-1"><a class="btn-custom"
+          href="{{url_for('delres',invoiceno=i.invoiceno,roomno=i.roomno)}}">Cancel Reservation<span
+            class="icon-long-arrow-right"></span></a></p></td>
+      </tr>
+      
+    </table>
+    <table class="table">
+      <tr>
+        <td>
+          
+        </td>
+      </tr>
+    </table>
+      </div>
+    {% endfor %}
+{% endblock content %}
